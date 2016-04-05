@@ -2,7 +2,7 @@
 @import 'libs/functions';
 @import 'libs/mixins';
 @import 'libs/skel';
-@import 'font-awesome.min.css';
+// @import 'font-awesome.min.css';
 @import url('http://fonts.googleapis.com/css?family=Source+Sans+Pro:400,700|Raleway:400,800,900');
 
 /*
@@ -63,4 +63,55 @@
 	width: 1px;
 	/* many screen reader and browser combinations announce broken words as they would appear visually */
 	word-wrap: normal !important;
+}
+
+.entry-content p img{
+	-webkit-clip-path: polygon(0% 25%, 0% 75%, 50% 100%, 100% 75%, 100% 25%, 50% 0%);
+	clip-path: polygon(0% 25%, 0% 75%, 50% 100%, 100% 75%, 100% 25%, 50% 0%);
+	shape-outside: polygon(0% 25%, 0% 75%, 50% 100%, 100% 75%, 100% 25%, 50% 0%);
+	margin: 20px;
+
+	&.alignleft {
+		float: left;
+	}
+	&.alignright {
+		float: right;
+	}
+}
+
+#intro header h2 {
+	transform: scale(1);
+	opacity: 1;
+	position: relative;
+	z-index: 1;
+	@include vendor('transition', 'scale 0.5s ease, opacity 0.5s ease');
+
+	&:before, &:after {
+		@include vendor('transition', 'width 0.85s ease');
+		@include vendor('transition-delay', '0.25s');
+		background: _palette(fg-bold);
+		content: '';
+		display: block;
+		height: 2px;
+		position: absolute;
+		width: 100%;
+	}
+
+	&:before {
+		top: 0;
+		left: 0;
+	}
+
+	&:after {
+		bottom: 0;
+		right: 0;
+	}
+}
+
+body.is-loading #intro header h2 {
+	transform: scale(0.95);
+	opacity: 0;
+	&:before, &:after {
+		width: 0;
+	}
 }

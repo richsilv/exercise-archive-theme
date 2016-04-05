@@ -180,11 +180,19 @@
 		} );
 	}
 
+	body = $( document.body );
+
+	body.addClass('is-loading');
+
 	$( document ).ready( function() {
-		body = $( document.body );
 
 		$( window )
-			.on( 'load.twentysixteen', onResizeARIA )
+			.on( 'load.twentysixteen', function () {
+				onResizeARIA()
+				window.setTimeout(function() {
+					body.removeClass('is-loading');
+				}, 100);
+			})
 			.on( 'resize.twentysixteen', function() {
 				clearTimeout( resizeTimer );
 				resizeTimer = setTimeout( function() {

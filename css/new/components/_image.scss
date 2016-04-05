@@ -51,6 +51,8 @@
 			position: relative;
 			margin: 0 0 _size(section-spacing) 0;
 			width: 100%;
+			height: auto;
+			overflow-y: hidden;
 			&.max-height {
 				max-height: 250px;
 			}
